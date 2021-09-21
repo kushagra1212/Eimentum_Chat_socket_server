@@ -1,21 +1,29 @@
 require("dotenv").config()
-const express = require("express");
-const http = require("http");
-const socketIo = require("socket.io");
-const cors=require('cors');
-const port = process.env.PORT || 4001;
-
-
+const express=require("express");
 const app = express();
+const cors=require('cors');
+const server = require("http").createServer(app);
+app.use(cors());
+const options={
+  cors:true,
+  origins:["https://eimentum.vercel.app/"]
+ }
+//  const options={
+//         cors:true,
+//         origins:["http://localhost:3000/"]
+//        }
+ 
+const io = require("socket.io")(server,options);
 
-const server = http.createServer(app);
+const PORT = process.env.PORT ||8000;
+app.use(express.json())
 
-const io = socketIo(server,{ cors: { origin: '*' } });
-app.use(cors({
-        credentials:true,
-        origin:process.env.ORG
-      }));
+app.use(cors());
 
+server.listen(PORT, () => console.log(`runnig on port ${PORT}`));
+app.get('/',(req,res)=>{
+        res.send({message:"SOCKET SERVER"});
+})
 let users=[];
 // const io=require("socket.io")(8900,{
 //    cors:{
@@ -74,10 +82,4 @@ io.on("connect",(socket)=>{
     });
 
 
-})
-
-
-server.listen(port, () => console.log(`Listening on port ${port}`));
-app.get('/',(req,res)=>{
-        res.json({message:"SOCKET SERVER"})
 })
