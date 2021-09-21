@@ -1,10 +1,25 @@
 require("dotenv").config()
+const express = require("express");
+const http = require("http");
+const socketIo = require("socket.io");
+const cors=require('cors');
+const { reset } = require("nodemon");
+const port = process.env.PORT || 4001;
+
+
+const app = express();
+
+const server = http.createServer(app);
+
+const io = socketIo(server,{ cors: { origin: '*' } });
+
+
 let users=[];
-const io=require("socket.io")(8900,{
-   cors:{
-           origin:process.env.SOCKETURL
-   }
-});     
+// const io=require("socket.io")(8900,{
+//    cors:{
+//            origin:process.env.SOCKETURL
+//    }
+// });     
 
 const addUserHandler=(username,socket_id)=>{
    
@@ -59,3 +74,8 @@ io.on("connect",(socket)=>{
 
 })
 
+
+server.listen(port, () => console.log(`Listening on port ${port}`));
+app.get('/',(req,res)=>{
+        res.json({message:"SOCKET SERVER"})
+})
