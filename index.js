@@ -23,7 +23,7 @@ app.use(express.json())
 
 
 server.listen(PORT, () => console.log(`runnig on port ${PORT}`));
-app.get('/',(req,res)=>{
+app.use('/',(req,res)=>{
         res.send({message:"SOCKET SERVER"});
 })
 let users=[];
