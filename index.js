@@ -1,37 +1,24 @@
-const express=require("express");
-const app = express();
-const server = require("http").createServer(app);
+const http=require('http');
+const express=require('express');
+const socketio=require('socket.io');
+const cors=require('cors');
+const app=express();
 
-require('dotenv').config();
+const server=http.createServer(app);
+const io=socketio(server);
 
- const cors=require('cors');
- var io = require('socket.io')(server, {
-        cors: {
-          origin: '*',
-        }
-    });
-
-const PORT = process.env.PORT ||8000;
 app.use(cors());
-
-
-   
-
-
-
-
-server.listen(PORT, () => console.log(`runnig on port ${PORT}`));
 app.use('/',(req,res)=>{
         res.send({message:"SOCKET SERVER"});
-})
+})   
+
+
+
+
 
 
 let users=[];
-// const io=require("socket.io")(8900,{
-//    cors:{
-//            origin:process.env.SOCKETURL
-//    }
-// });     
+   
 
 const addUserHandler=(username,socket_id)=>{
    
@@ -85,3 +72,5 @@ io.on("connect",(socket)=>{
 
 
 })
+
+server.listen(process.env.PORT || 5000,()=>console.log("server started"));
