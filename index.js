@@ -3,20 +3,17 @@ const express=require("express");
 const app = express();
 const cors=require('cors');
 const server = require("http").createServer(app);
-// app.use(cors({
-//         credentials:true,
-//         origin:"https://eimentum.vercel.app"
-//       }));
-const options={
-  cors:true,
-  origins:["https://eimentum.vercel.app"]
- }
+app.use(cors({
+        credentials:true,
+        origin:"https://eimentum.vercel.app"
+      }));
+
         //  const options={
         //         cors:true,
         //         origins:["ws://localhost:3000/"]
         //        }
  
-const io = require("socket.io")(server,options);
+const io = require("socket.io")(server);
 
 const PORT = process.env.PORT ||8000;
 app.use(express.json())
