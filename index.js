@@ -7,10 +7,10 @@ const server = require("http").createServer(app);
 //         credentials:true,
 //         origin:"https://eimentum.vercel.app"
 //       }));
-// const options={
-//   cors:true,
-//   origins:["https://eimentum.vercel.app"]
-//  }
+const options={
+  cors:true,
+  origins:["https://eimentum.vercel.app"]
+ }
         //  const options={
         //         cors:true,
         //         origins:["ws://localhost:3000/"]
