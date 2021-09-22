@@ -6,11 +6,11 @@ const server = require("http").createServer(app);
 app.use(cors());
 const options={
   cors:true,
-  origins:["https://eimentum.vercel.app/"]
+  origins:["ws://eimentum.vercel.app/"]
  }
 //  const options={
 //         cors:true,
-//         origins:["http://localhost:3000/"]
+//         origins:["ws://localhost:3000/"]
 //        }
  
 const io = require("socket.io")(server,options);
