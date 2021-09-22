@@ -4,12 +4,12 @@ const server = require("http").createServer(app);
 
 require('dotenv').config();
 
-const options={
-        cors:true,
-        origins:["https://eimentum.vercel.app/"]
-       }
  const cors=require('cors');
-const io = require("socket.io")(server,options);
+ var io = require('socket.io')(server, {
+        cors: {
+          origin: '*',
+        }
+    });
 
 const PORT = process.env.PORT ||8000;
 app.use(cors());
