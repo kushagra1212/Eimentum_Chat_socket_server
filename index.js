@@ -3,10 +3,10 @@ const express=require("express");
 const app = express();
 const cors=require('cors');
 const server = require("http").createServer(app);
-app.use(cors({
-        credentials:true,
-        origin:"https://eimentum.vercel.app"
-      }));
+// app.use(cors({
+//         credentials:true,
+//         origin:"https://eimentum.vercel.app"
+//       }));
 
          const options={
                 cors:true,
@@ -23,6 +23,7 @@ server.listen(PORT, () => console.log(`runnig on port ${PORT}`));
 app.use('/',(req,res)=>{
         res.send({message:"SOCKET SERVER"});
 })
+app.use(cors());
 
 
 let users=[];
