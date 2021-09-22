@@ -1,17 +1,23 @@
-const http=require('http');
-const express=require('express');
-const socketio=require('socket.io');
-const cors=require('cors');
-const app=express();
+const express=require("express");
+const app = express();
+const server = require("http").createServer(app);
 
-const server=http.createServer(app);
-const io=socketio(server);
+require('dotenv').config();
 
+const options={
+  cors:true,
+  origins:["https://eimentum.vercel.app/"]
+ }
+ const cors=require('cors');
+const io = require("socket.io")(server,options);
+
+const PORT = process.env.PORT ||8000;
 app.use(cors());
-app.use('/',(req,res)=>{
-        res.send({message:"SOCKET SERVER"});
-})   
 
+
+app.use(express.json())
+
+  server.listen(PORT, () => console.log(`runnig on port ${PORT}`));
 
 
 
@@ -37,7 +43,7 @@ const removeUserHandler=(socket_id)=>{
 const getuser=(receiver)=>{
         return users.find(user=>user.username===receiver);
 }
-io.on("connect",(socket)=>{
+io.on("connection",(socket)=>{
     
 
         console.log("connected")
@@ -66,11 +72,10 @@ io.on("connect",(socket)=>{
     
         socket.emit("getuser",users);
      
-        
+        console.log("disconnected")
      
     });
 
 
 })
 
-server.listen(process.env.PORT || 5000,()=>console.log("server started"));
