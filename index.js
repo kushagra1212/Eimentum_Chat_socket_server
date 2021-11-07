@@ -8,19 +8,21 @@ const options={
   cors:true,
   origins:["https://eimentum.vercel.app/"]
  }
+ 
+// const options={
+//         cors:true,
+//         origins:["http://localhost:3000/"]
+//        }
  const cors=require('cors');
 const io = require("socket.io")(server,options);
 
-const PORT = process.env.PORT ||8000;
+const PORT = process.env.PORT;
 app.use(cors());
 
 
 app.use(express.json())
 
   server.listen(PORT, () => console.log(`runnig on port ${PORT}`));
-
-
-
 
 
 let users=[];
