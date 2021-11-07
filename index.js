@@ -24,7 +24,9 @@ app.use(express.json())
 
   server.listen(PORT, () => console.log(`runnig on port ${PORT}`));
 
-
+  app.use("/", (req, res) => {
+        res.send("server");
+      });
 let users=[];
    
 
