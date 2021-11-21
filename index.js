@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const options={
   cors:true,
+  credentials:true,
   origins:["https://eimentum.vercel.app/","https://eimentum.vercel.app/main/messenger"]
  }
  
