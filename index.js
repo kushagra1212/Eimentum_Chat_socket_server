@@ -6,17 +6,17 @@ require('dotenv').config();
 
 const options={
   cors:true,
-  origins:["https://eimentum.vercel.app/"]
+  origins:["https://eimentum.vercel.app/","https://eimentum.vercel.app/main/messenger"]
  }
  
 // const options={
 //         cors:true,
-//         origins:["http://localhost:3000/"]
+//         origins:["http://localhost:3000/","http://localhost:3000/main/messenger"]
 //        }
  const cors=require('cors');
 const io = require("socket.io")(server,options);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8000;
 app.use(cors());
 
 
