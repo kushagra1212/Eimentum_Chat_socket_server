@@ -7,7 +7,7 @@ app.use(cors());
 const options = {
   cors: true,
   transports: ['polling'],
-  origins: ["https://eimentum.vercel.app/"],
+  origins: ["https://eimentum.vercel.app/","https://eimentum.vercel.app/main/messenger"],
   Credential:true
 };
 
