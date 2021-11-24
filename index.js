@@ -7,11 +7,13 @@ app.use(cors());
 
 const options={
   cors: {
-      origin: "https://eimentum.vercel.app",
+      origin: "https://eimentum.vercel.app/",
       methods: ["GET", "POST"],
       transports: ['websocket', 'polling'],
       credentials: true
   },
+  origins:["https://eimentum.vercel.app/"]
+  ,
   allowEIO3: true
 }
 const io = require('socket.io')(server, options);
