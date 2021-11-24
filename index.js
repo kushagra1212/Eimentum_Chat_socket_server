@@ -6,6 +6,7 @@ require("dotenv").config();
 app.use(cors());
 const options = {
   cors: true,
+  transports: ['polling'],
   origins: ["https://eimentum.vercel.app/"],
   Credential:true
 };
