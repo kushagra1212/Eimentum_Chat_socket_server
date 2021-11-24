@@ -4,11 +4,17 @@ const server = require("http").createServer(app);
 const cors = require("cors");
 require("dotenv").config();
 app.use(cors());
-const options = {
-  cors: true,
-  origins: ["https://eimentum.vercel.app/"],
-};
 
+const options={
+  cors: {
+      origin: "https://eimentum.vercel.app",
+      methods: ["GET", "POST"],
+      transports: ['websocket', 'polling'],
+      credentials: true
+  },
+  allowEIO3: true
+}
+const io = require('socket.io')(server, options);
 // const options={
 //         cors:true,
 //         origins:["http://localhost:3000/","http://localhost:3000/main/messenger"]
