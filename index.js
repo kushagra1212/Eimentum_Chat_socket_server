@@ -1,25 +1,25 @@
 const express = require("express");
 const app = express();
 const server = require("http").createServer(app);
-const cors = require("cors");
 require("dotenv").config();
-app.use(cors());
+const cors = require("cors");
+
 const options = {
   cors: true,
-  transports: ['polling'],
-  origins: ["https://eimentum.vercel.app/","https://eimentum.vercel.app/main/messenger"],
-  Credential:true
+  origins: ["https://eimentum.vercel.app/"]
+
 };
 
 // const options={
 //         cors:true,
-//         origins:["http://localhost:3000/","http://localhost:3000/main/messenger"]
+//         origins:["http://localhost:3000/"]
 //        }
 
-const io = require("socket.io")(server, options);
+
+const io = require('socket.io')(server, options);
 
 const PORT = process.env.PORT || 8000;
-
+app.use(cors());
 app.use(express.json());
 
 server.listen(PORT, () => console.log(`runnig on port ${PORT}`));
