@@ -45,8 +45,7 @@ const getuser = (receiver) => {
   return users.find((user) => user.username === receiver);
 };
 io.on("connection", (socket) => {
-  console.log("connected");
-
+ 
   socket.emit("Welcome", { message: "Welcome Buddy !" });
   socket.on("adduser", (username) => {
     const socket_id = socket.id;
@@ -68,6 +67,5 @@ io.on("connection", (socket) => {
 
     socket.emit("getuser", users);
 
-    console.log("disconnected");
   });
 });
