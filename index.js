@@ -39,10 +39,10 @@ const addUserHandler = (username, socket_id) => {
   users.push({ username, socket_id });
 };
 const removeUserHandler = (socket_id) => {
-  return users.filter((user) => user.socket_id !== socket_id);
+  return users.filter((user) => user?.socket_id !== socket_id);
 };
 const getuser = (receiver) => {
-  return users.find((user) => user.username === receiver);
+  return users.find((user) => user?.username === receiver);
 };
 io.on("connection", (socket) => {
  
@@ -56,7 +56,7 @@ io.on("connection", (socket) => {
   socket.on("sendmessage", ({ receiver, sender, text }) => {
     let rec = getuser(receiver);
 
-    io.to(rec.socket_id).emit("getmessage", {
+    io.to(rec?.socket_id).emit("getmessage", {
       sender,
       text,
     });
